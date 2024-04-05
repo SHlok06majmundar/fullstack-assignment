@@ -14,9 +14,11 @@ export function Welcome() {
                     </div>
                     <div className="image-bar">
                         <h1 className='font-bold pt-10 text-xl'>Add an Avatar</h1>
+                    <div className="imagepicker pt-4">
 
+                        <ImgPick />
                     </div>
-                <ImgPick/>
+                    </div>
                 </div>
 
             </div>
