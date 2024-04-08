@@ -45,7 +45,7 @@ function App() {
         <Route path="/" element={<Signup formData={formData1} handleChange={handleChange1} />} />
         <Route path="/welcome" element={<Welcome formData={formData2} handleChange={handleChange2} handleImageChange={handleImageChange} />} />
         <Route path="/selectReason" element={<SelectReason formData={[formData1,formData2]} />} />
-        <Route path="/emailverify" element={<Email/>} />
+        <Route path="/emailverify" element={<Email formData={formData2} email={formData1.email}/>} />
       </Routes>
 
     </Router>

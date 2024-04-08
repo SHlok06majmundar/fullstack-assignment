@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom';
 const SelectReason = ({ formData }) => {
     console.log(formData);
+    const navigate=useNavigate();
 
     const [cardSelected, setCardSelected] = useState(false);
     const Handlesubmit = async () => {
@@ -24,7 +25,6 @@ const SelectReason = ({ formData }) => {
         } catch (error) {
             console.error('Error:', error);
         }
-        const navigate=useNavigate();
         navigate('/emailverify')
 
     }

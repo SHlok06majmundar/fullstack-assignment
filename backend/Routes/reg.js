@@ -40,7 +40,8 @@ router.post('/signupDribble',
                 username:req.body.username,
                 email: req.body.email,
                 password: secPass,
-                location:req.body.location
+                location:req.body.location,
+                image:req.body.image
             })
             await newuser.save();
             res.status(200).json({ msg: "User Created Successfully", user: newuser });
