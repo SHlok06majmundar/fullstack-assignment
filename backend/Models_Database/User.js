@@ -20,6 +20,10 @@ const UserSchema=new Schema({
     },
     location:{
         type:String,
+    },
+    image: {
+        type: String // This will store the image URL
+        
     }
 
 })

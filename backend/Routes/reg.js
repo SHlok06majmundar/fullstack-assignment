@@ -3,7 +3,19 @@ const router = express.Router();
 const User = require("../Models_Database/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+
 const { body, validationResult } = require('express-validator');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
 router.post('/signupDribble',
     [
         body('name').trim().isLength({ min: 2 }).withMessage("Enter Valid Inputs"),
