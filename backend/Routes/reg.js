@@ -4,6 +4,8 @@ const User = require("../Models_Database/User");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const multer = require('multer');
+const { Resend } = require('resend');
+const resend = new Resend('re_Yd1nwdMV_DhJ1ozeG78DsT6KCy5jFyjyW');
 
 const { body, validationResult } = require('express-validator');
 const storage = multer.diskStorage({
@@ -46,10 +48,22 @@ router.post('/signupDribble',
             await newuser.save();
             res.status(200).json({ msg: "User Created Successfully", user: newuser });
 
+            
         }
+
         catch (error) {
             console.log(error);
             res.status(500).json({ msg: "Internal Server error" })
         }
     })
+router.post("/sendEmail",async(req,res)=>{
+    const emailResponse = await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: [req.body.email],
+        subject: 'Welcome to Dribble',
+        html: `<p>Hi ${req.body.name},</p><p>Welcome to Dribble!</p><p>Your account has been successfully created.</p>`,
+        // You can add more options here
+    });
+    console.log("Email sent:", emailResponse);
+})
 module.exports=router;
